@@ -1,6 +1,7 @@
 import React, {PropsWithChildren} from 'react';
 import styled from 'styled-components/native';
 import {DarkProps} from '../../types';
+import {colors} from '../../theme';
 
 const TextSize = {
   extraSmall: '12px',
@@ -19,7 +20,8 @@ export interface TextProps extends DarkProps {
 
 const StyledText = styled.Text<TextProps>`
   font-size: ${({size}) => TextSize[size || 'small']};
-  color: ${({color, isDark}) => (color ? color : isDark ? 'white' : 'black')};
+  color: ${({color, isDark}) =>
+    color ? color : isDark ? colors.white : colors.black};
   font-weight: 500;
   text-align: ${({align}) => align || 'left'};
   text-decoration: ${({decoration}) => decoration || 'none'};

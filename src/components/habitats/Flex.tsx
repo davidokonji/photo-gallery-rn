@@ -13,7 +13,8 @@ interface FlexProps extends DarkProps, LayoutProps {
 const StyledContainer = styled(View)<FlexProps>`
   display: flex;
   position: relative;
-  background-color: ${({isDark}) => (isDark ? colors.black : colors.white)};
+  background-color: ${({isDark, bgColor}) =>
+    bgColor || (isDark ? colors.black : colors.white)};
   color: ${({isDark}) => (isDark ? colors.white : colors.black)};
   flex-direction: ${({flexDirection}) => flexDirection || 'column'};
   justify-content: ${({justify}) => justify || 'flex-start'};
@@ -29,6 +30,7 @@ const Flex = ({
   align,
   width,
   padding,
+  bgColor,
 }: PropsWithChildren<FlexProps>) => {
   const isDark = useColorScheme() === 'dark';
 
@@ -38,6 +40,7 @@ const Flex = ({
       flexDirection={flexDirection}
       justify={justify}
       width={width}
+      bgColor={bgColor}
       padding={padding}
       align={align}>
       {children}

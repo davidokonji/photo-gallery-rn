@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {Modal, Keyboard} from 'react-native';
+import {Modal, Keyboard, Platform} from 'react-native';
 import styled from 'styled-components/native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
@@ -12,6 +12,7 @@ import Text from '../../atoms/Text';
 import Button from '../../atoms/Button';
 import {colors} from '../../../theme';
 import Icon from '../../atoms/Icon';
+import {DarkProps} from '../../../types';
 
 const StyledContainer = styled(KeyboardAwareScrollView)`
   flex: 1;
@@ -27,11 +28,13 @@ const StyledInputContainer = styled.View`
   bottom: 0;
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)<DarkProps>`
   border: 1px solid;
   padding: 12px 10px;
   border-radius: 16px;
   margin-left: 8px;
+  border-color: ${({isDark}) => (isDark ? colors.white : colors.black)};
+  background-color: ${({isDark}) => (isDark ? colors.black : colors.white)};
   opacity: ${({disabled}) => (disabled ? 0.5 : 1)};
 `;
 
@@ -85,6 +88,7 @@ const ImageContext = () => {
             }
           }}
           enableOnAndroid
+          extraScrollHeight={Platform.OS === 'android' ? 160 : 0}
           keyboardShouldPersistTaps="always"
           showsVerticalScrollIndicator={false}>
           <Flex>

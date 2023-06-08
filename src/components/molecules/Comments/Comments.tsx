@@ -20,8 +20,7 @@ const StyledComment = styled.View<DarkProps>`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: ${({isDark}) =>
-    isDark ? colors.black : colors.ghostWhite};
+  background-color: ${({isDark}) => (isDark ? colors.black : colors.drakGray)};
   border-radius: 8px;
   margin-bottom: 8px;
   padding: 12px 10px;
@@ -42,17 +41,18 @@ const Comments = () => {
             flexDirection="row"
             align="baseline"
             justify="space-between"
+            bgColor={isDark ? colors.drakGray : colors.drakGray}
             width="20%">
             <Button
               text={{size: 'extraSmall', color: colors.black}}
               onPress={() => editComment(comment.id)}
-              bgColor={isDark ? colors.white : colors.ghostWhite}>
+              bgColor={isDark ? colors.drakGray : 'transparent'}>
               Edit
             </Button>
             <Button
               text={{size: 'extraSmall', color: colors.red}}
               onPress={() => deleteComment(comment.id)}
-              bgColor={isDark ? colors.white : colors.ghostWhite}>
+              bgColor={isDark ? colors.drakGray : 'transparent'}>
               Delete
             </Button>
           </Flex>
